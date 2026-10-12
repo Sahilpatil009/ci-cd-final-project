@@ -1,38 +1,62 @@
-# CI/CD Tools and Practices Final Project Template
+# CI/CD Final Project: Hit Counter Microservice Pipeline
 
-This repository contains the template to be used for the Final Project for the Coursera course **CI/CD Tools and Practices**.
+This repository contains the complete Continuous Integration and Continuous Delivery (CI/CD) implementation for the **Hit Counter Microservice** as part of the Coursera **CI/CD Tools and Practices** course (IBM DevOps and Software Engineering Professional Certificate).
 
-## Usage
+## Project Overview
 
-This repository is to be used as a template to create your own repository in your own GitHub account. No need to Fork it as it has been set up as a Template. This will avoid confusion when making Pull Requests in the future.
+- **Project Name:** Hit Counter Microservice CI/CD Pipeline
+- **Repository:** `ci-cd-final-project`
+- **Application:** RESTful Flask-based Hit Counter API service
+- **CI Tool:** GitHub Actions (`.github/workflows/workflow.yml`)
+- **CD Tool:** OpenShift Pipelines / Tekton (`.tekton/tasks.yml`, `pipeline.yaml`)
 
-From the GitHub **Code** page, press the green **Use this template** button to create your own repository from this template.
+## Features & Implementation
 
-Name your repo: `ci-cd-final-project`.
+1. **Continuous Integration (GitHub Actions):**
+   - Automatically triggered on code push and pull requests to `main`.
+   - Python 3.9 test environment setup.
+   - Code linting using `flake8` to enforce PEP8 standards and code quality.
+   - Automated unit tests and test coverage using `nosetests` and `coverage`.
 
-## Setup
+2. **Continuous Delivery (OpenShift Pipelines / Tekton):**
+   - Workspace cleanup task (`cleanup`) to purge previous build artifacts.
+   - Git repository checkout (`git-clone`).
+   - Linter task (`flake8`).
+   - Unit testing task (`nose`).
+   - Container image build using `buildah` ClusterTask.
+   - Deployment to Red Hat OpenShift cluster.
 
-After entering the lab environment you will need to run the `setup.sh` script in the `./bin` folder to install the prerequisite software.
+## Local Setup
+
+To run this project locally, execute the setup script:
 
 ```bash
 bash bin/setup.sh
 ```
 
-Then you must exit the shell and start a new one for the Python virtual environment to be activated.
+Then exit and start a new shell to activate the Python virtual environment:
 
 ```bash
 exit
 ```
 
-## Tasks
+### Running Tests Locally
 
+```bash
+nosetests -v --with-spec --spec-color
+```
+
+### Running Linters Locally
+
+```bash
+flake8 service
+```
 
 ## License
 
-Licensed under the Apache License. See [LICENSE](/LICENSE)
+Licensed under the Apache License 2.0. See [LICENSE](LICENSE) for details.
 
 ## Author
 
-Skills Network
-
-## <h3 align="center"> © IBM Corporation 2023. All rights reserved. <h3/>
+Sahil Balasaheb Patil  
+IBM Skills Network Learner
